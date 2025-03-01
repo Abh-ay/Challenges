@@ -1,0 +1,39 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/HumaniM/HumaniM.sln
+# Ignore build output
+bin/
+obj/
+
+# User-specific files for Visual Studio
+.vs/
+.idea/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Local development settings
+appsettings.json
+appsettings.Development.json
+
+# Windows system files
+Thumbs.db
+ehthumbs.db
+
+# Docker files (optional)
+.docker/
+docker-compose.override.yml
+
+# npm packages
+node_modules/
+
+# TypeScript build files
+*.tsbuildinfo
+
+# Rider IDE
+.idea/
+
+# Azure deployment
+publish/
