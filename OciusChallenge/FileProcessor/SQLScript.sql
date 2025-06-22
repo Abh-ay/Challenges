@@ -3,7 +3,7 @@
     FileName VARCHAR(150),
     FileText VARCHAR(MAX),
     IsSuccess BIT DEFAULT 0,
-    Separator VARCHAR(10),
+    Separator VARCHAR(10) DEFAULT NULL,
     Remarks VARCHAR(MAX)
 );
 

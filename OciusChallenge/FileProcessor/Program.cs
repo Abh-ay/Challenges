@@ -1,5 +1,5 @@
 using FileProcessor.Folder;
-using FileProcessor.Interface;
+using FileProcessor.Manager;
 using FileProcessor.Repository;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -18,6 +18,7 @@ builder.Services.AddDbContext<FileDbContext>(options =>
 
 builder.Services.AddScoped<IFileRepository, FileRepository>();
 builder.Services.AddScoped<IFileManager, FileManager>();
+
 
 var app = builder.Build();
 

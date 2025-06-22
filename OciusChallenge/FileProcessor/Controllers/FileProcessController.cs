@@ -1,4 +1,5 @@
-﻿using FileProcessor.Interface;
+﻿using FileProcessor.Manager;
+using FileProcessor.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Text;
 
@@ -18,9 +19,9 @@ namespace TempFileProj.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(string pickupPath, string dropPath, char seperator, int parallelCount, int batchSize, int batchCount)
+        public async Task<IActionResult> Post(InputClass inputValue)
         {
-            return Ok(_fileManager.ProcessFile(pickupPath, dropPath, seperator, parallelCount, batchSize, batchCount));
+            return Ok(await _fileManager.ProcessFileAsync(inputValue));
         }
 
     }

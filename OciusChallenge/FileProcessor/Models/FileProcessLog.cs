@@ -6,4 +6,7 @@
     public bool IsSuccess { get; set; } = false;
     public string Separator { get; set; }
     public string Remarks { get; set; }
+
+    public ICollection<LinkFileWordDetails> LinkFileWordDetails { get; set; }
+
 }

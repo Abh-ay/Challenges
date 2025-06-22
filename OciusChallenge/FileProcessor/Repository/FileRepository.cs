@@ -1,4 +1,4 @@
-﻿using FileProcessor.Interface;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace FileProcessor.Repository
 {
@@ -9,18 +9,19 @@ namespace FileProcessor.Repository
         {
             _db = db;
         }
-        public void SaveFileLogs(FileProcessLog fileProcessLog) 
+        public async Task<bool> SaveFileLogsAsync(List<FileProcessLog> fileLogList) 
         {
-            _db.FileProcessLog.Add(fileProcessLog);
-            _db.SaveChanges();
+            // For save the data in both the tables 
+            _db.FileProcessLog.AddRange(fileLogList);
+            return await _db.SaveChangesAsync() > 0;
             
         }
 
-        public void SaveWordFileDetails(List<LinkFileWordDetails> linkFileWordDetails,FileProcessLog fileLog)
+        // As we get all files which processed
+        // It's heavy operations we need to optimize with given input files list as input params
+        public async Task<List<string>> GetAllFiles()
         {
-            _db.LinkFileWordDetail.AddRange(linkFileWordDetails);
-            fileLog.IsSuccess = true;
-            _db.SaveChanges();
+            return await _db.FileProcessLog.Select(i=>i.FileName).ToListAsync();
 
         }
     }
