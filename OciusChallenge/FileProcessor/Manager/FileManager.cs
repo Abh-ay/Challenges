@@ -28,6 +28,9 @@ namespace FileProcessor.Folder
 
         public async Task<string> ProcessFileAsync([FromBody] InputClass inputValue)
         {
+            if (inputValue.DropPath.Equals(inputValue.PickupPath))
+                throw new FileException($"Both pickup and drop path cant be same Pickup Path : {inputValue.PickupPath} ,Drop Path : {inputValue.DropPath}",HttpStatusCode.MisdirectedRequest);
+
             var requiredFiles = Directory.GetFiles(inputValue.PickupPath).Take(inputValue.BatchCount * inputValue.BatchSize).ToArray();
 
             requiredFiles = requiredFiles.Except(await _fileRepository.GetAllFiles()).ToArray(); 
